@@ -411,6 +411,7 @@
           <button type="button" data-tab="soups">Soups</button>
           <button type="button" data-tab="condiments">Chutney / Mayo</button>
           <button type="button" data-tab="dessert">Dessert &amp; Shakes</button>
+          <button type="button" data-tab="marinations">Marinations</button>
         </nav>
         <nav class="navchips srcchips" id="srcTabs" aria-label="Filter by source">
           <span class="src-label">Source:</span>
@@ -478,7 +479,8 @@
           snacks: ['snacks'],
           soups: ['soups'],
           condiments: ['condiments'],
-          dessert: ['dessert']
+          dessert: ['dessert'],
+          marinations: []
         };
         var activeTab = 'all';
 
@@ -568,7 +570,7 @@
           var allowed = inPlan ? [] : (tabSections[activeTab] || []);
           var anyVisible = false;
           groups.forEach(function (g) {
-            var inTab = allowed.indexOf(g.id) !== -1;
+            var inTab = allowed.indexOf(g.id) !== -1 || (activeTab === 'marinations' && card.getAttribute('data-marination') === '1');
             var groupVisible = false;
             g.cards.forEach(function (card) {
               var text = (card.getAttribute('data-name') + ' ' + card.textContent).toLowerCase();
@@ -1761,7 +1763,7 @@
       </article>
 
       <!-- 3 Chicken Marination Styles (Reddit) -->
-      <article class="card" data-name="chicken marinations three styles reddit">
+      <article class="card" data-name="chicken marinations three styles reddit" data-marination="1">
         <div class="card-top">
           <h3>3 Chicken Marination Styles</h3>
           <p class="by">Each style is for 500g chicken (serves 2).</p>
